@@ -4,6 +4,11 @@ import List from "@material-ui/core/List";
 import { MessageInput } from "./messageInput.component";
 import { MessageItem } from "./messageItem.component";
 
+//TODO
+// handleNewUser
+// handleDisconnect
+// handleTyping
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",
@@ -22,13 +27,16 @@ const inputStyle = {
   width: "100%",
   position: "absolute"
 };
-
 const divStyle = {
   overflowY: "auto"
 };
-export const Chat = () => {
+
+export const Chat = props => {
   const [state, setState] = useState({
     listValues: []
+  });
+  props.socket.on("new_message", data => {
+    addItem(data.message);
   });
   const addItem = message => {
     setState({
@@ -41,6 +49,10 @@ export const Chat = () => {
       ]
     });
   };
+  const handleNewMessage = message => {
+    props.socket.emit("new_message", { message: message });
+  };
+
   const classes = useStyles();
   return (
     <Fragment>
@@ -52,7 +64,7 @@ export const Chat = () => {
         </List>
       </div>
       <div style={inputStyle}>
-        <MessageInput buttonClick={addItem}></MessageInput>
+        <MessageInput handleMessage={handleNewMessage}></MessageInput>
       </div>
     </Fragment>
   );

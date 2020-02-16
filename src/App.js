@@ -1,8 +1,17 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { ChatContainer } from "./components/chatContainer.component";
 import "./App.css";
+import socketIOClient from "socket.io-client";
 
-function App() {
+const App = () => {
+  const state = {
+    response: false,
+    endpoint: "http://localhost:4000/"
+  };
+
+  const { endpoint } = state;
+  const socket = socketIOClient(endpoint);
+
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
@@ -10,9 +19,9 @@ function App() {
   };
   return (
     <div style={containerStyle}>
-      <ChatContainer />
+      <ChatContainer socket={socket} />
     </div>
   );
-}
+};
 
 export default App;

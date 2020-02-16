@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Chat } from "./chat.component";
 
-export const ChatContainer = () => {
+export const ChatContainer = props => {
   const divStyle = {
     border: "1px solid black",
     width: "800px",
@@ -16,7 +16,7 @@ export const ChatContainer = () => {
   return (
     <div style={divStyle}>
       Chat Container
-      <Chat></Chat>
+      <Chat {...props}></Chat>
     </div>
   );
 };
