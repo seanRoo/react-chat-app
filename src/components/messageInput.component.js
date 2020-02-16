@@ -16,9 +16,8 @@ export const MessageInput = props => {
   const [messageValue, setMessage] = useState();
   const handleClick = () => {
     const message = messageValue;
-    props.handleMessage(message);
     clearInputField();
-    return props.buttonClick(message);
+    return props.handleMessage(message);
   };
   const handleChange = e => {
     setMessage(e.target.value);

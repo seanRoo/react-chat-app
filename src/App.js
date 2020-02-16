@@ -17,16 +17,11 @@ const App = () => {
     justifyContent: "center",
     alignItems: "center"
   };
-  const handleNewMessage = message => {
-    socket.emit("new_message", { message: message });
-    socket.on("new_message", data => {
-      console.log(data);
-    });
-  };
   return (
     <div style={containerStyle}>
       <ChatContainer
-        handleNewMessage={handleNewMessage}
+        socket={socket}
+        // handleNewMessage={handleNewMessage}
         // handleNewUser
         // handleDisconnect
         // handleTyping
