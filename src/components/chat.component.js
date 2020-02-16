@@ -8,6 +8,7 @@ import { MessageItem } from "./messageItem.component";
 // handleNewUser
 // handleDisconnect
 // handleTyping
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%",

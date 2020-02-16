@@ -19,13 +19,7 @@ const App = () => {
   };
   return (
     <div style={containerStyle}>
-      <ChatContainer
-        socket={socket}
-        // handleNewMessage={handleNewMessage}
-        // handleNewUser
-        // handleDisconnect
-        // handleTyping
-      />
+      <ChatContainer socket={socket} />
     </div>
   );
 };
