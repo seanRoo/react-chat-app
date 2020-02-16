@@ -22,11 +22,11 @@ const inputStyle = {
   width: "100%",
   position: "absolute"
 };
-
 const divStyle = {
   overflowY: "auto"
 };
-export const Chat = () => {
+
+export const Chat = props => {
   const [state, setState] = useState({
     listValues: []
   });
@@ -52,7 +52,10 @@ export const Chat = () => {
         </List>
       </div>
       <div style={inputStyle}>
-        <MessageInput buttonClick={addItem}></MessageInput>
+        <MessageInput
+          handleMessage={props.handleNewMessage}
+          buttonClick={addItem}
+        ></MessageInput>
       </div>
     </Fragment>
   );
