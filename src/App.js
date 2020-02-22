@@ -6,7 +6,10 @@ import socketIOClient from "socket.io-client";
 const App = () => {
   const state = {
     response: false,
-    endpoint: "http://localhost:4000/"
+    endpoint: "http://localhost:4000/",
+    user: {
+      username: ""
+    }
   };
 
   const { endpoint } = state;

@@ -1,18 +1,29 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
-import MessageItem from "./messageItem.component";
+
+const useStyles = makeStyles({
+  inputStyle: {
+    width: "80%"
+  },
+  buttonStyle: {
+    width: "5%",
+    marginLeft: 8,
+    marginTop: 12,
+    borderRadius: 40
+  },
+  inputContainer: {
+    textAlign: "center",
+    paddingBottom: 20,
+    "& .MuiInputBase-root": {
+      borderRadius: 25
+    }
+  }
+});
 
 export const MessageInput = props => {
-  const inputStyle = {
-    width: "90%"
-  };
-  const buttonStyle = {
-    width: "5%",
-    marginLeft: "8px",
-    marginTop: "12px"
-  };
   const [messageValue, setMessage] = useState();
   const handleClick = () => {
     const message = messageValue;
@@ -31,12 +42,13 @@ export const MessageInput = props => {
       handleClick();
     }
   };
+  const classes = useStyles();
   return (
-    <div>
+    <div className={classes.inputContainer}>
       <TextField
-        style={inputStyle}
+        className={classes.inputStyle}
         id="outlined-textarea"
-        placeholder="Placeholder"
+        placeholder="Start typing..."
         multiline
         variant="outlined"
         onChange={handleChange}
@@ -46,7 +58,7 @@ export const MessageInput = props => {
       <Button
         type="button"
         onClick={handleClick}
-        style={buttonStyle}
+        className={classes.buttonStyle}
         variant="contained"
         color="primary"
         size="small"

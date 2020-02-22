@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Chat } from "./chat.component";
+import { UserNameInput } from "./userNameInput.component";
 
 export const ChatContainer = props => {
   const divStyle = {
@@ -8,15 +9,13 @@ export const ChatContainer = props => {
     height: "800px",
     display: "grid",
     position: "relative",
-    gridTemplateRows: "5% 80%"
+    gridTemplateRows: "10% 80%",
+    borderRadius: "25px"
   };
-  const [state, setState] = useState({
-    textValues: []
-  });
   return (
     <div style={divStyle}>
-      Chat Container
-      <Chat {...props}></Chat>
+      <UserNameInput />
+      <Chat {...props} />
     </div>
   );
 };

@@ -53,6 +53,17 @@ export const Chat = props => {
     props.socket.emit("new_message", { message: message });
   };
 
+  window.onbeforeunload = () => {
+    props.socket.emit("disconnect");
+  };
+
+  props.socket.on("disconnect", data => {
+    if (data.username) {
+      console.log(`${data.username} disconnected`);
+    }
+    console.log("Well god damn someone done disconnected!");
+  });
+
   const classes = useStyles();
   return (
     <Fragment>
