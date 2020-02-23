@@ -20,6 +20,9 @@ const useStyles = makeStyles(theme => ({
   },
   inline: {
     display: "inline"
+  },
+  userJoinedDiv: {
+    textAlign: "center"
   }
 }));
 const inputStyle = {
@@ -68,14 +71,31 @@ export const Chat = props => {
   return (
     <Fragment>
       <div style={divStyle}>
+        {props.user ? (
+          <div
+            className={classes.userJoinedDiv}
+            hidden={props.user ? false : true}
+          >
+            <strong>
+              <i>{props.user} joined the chat</i>
+            </strong>
+          </div>
+        ) : null}
         <List className={classes.root}>
           {state.listValues.map(item => (
-            <MessageItem key={item.id} message={item.value}></MessageItem>
+            <MessageItem
+              key={item.id}
+              message={item.value}
+              user={props.user}
+            ></MessageItem>
           ))}
         </List>
       </div>
       <div style={inputStyle}>
-        <MessageInput handleMessage={handleNewMessage}></MessageInput>
+        <MessageInput
+          handleMessage={handleNewMessage}
+          user={props.user}
+        ></MessageInput>
       </div>
     </Fragment>
   );

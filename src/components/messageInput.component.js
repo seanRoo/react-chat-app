@@ -25,6 +25,7 @@ const useStyles = makeStyles({
 
 export const MessageInput = props => {
   const [messageValue, setMessage] = useState();
+  const [isDisabled, setDisable] = useState(true);
   const handleClick = () => {
     const message = messageValue;
     clearInputField();
@@ -38,7 +39,8 @@ export const MessageInput = props => {
   };
 
   const handleKeyPress = event => {
-    if (event.key === "Enter") {
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
       handleClick();
     }
   };
@@ -54,6 +56,8 @@ export const MessageInput = props => {
         onChange={handleChange}
         value={messageValue}
         onKeyPress={handleKeyPress}
+        autoFocus
+        disabled={props.user ? false : true}
       />
       <Button
         type="button"
@@ -63,6 +67,7 @@ export const MessageInput = props => {
         color="primary"
         size="small"
         endIcon={<SendIcon />}
+        disabled={props.user ? false : true}
       ></Button>
     </div>
   );

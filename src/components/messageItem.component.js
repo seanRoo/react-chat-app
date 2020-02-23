@@ -32,7 +32,7 @@ export const MessageItem = props => {
         classes={{
           secondary: classes.secondary
         }}
-        primary={"Sean"}
+        primary={props.user}
         secondary={props.message}
       />
     </ListItem>
