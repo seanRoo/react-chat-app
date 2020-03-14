@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import List from "@material-ui/core/List";
-import { MessageInput } from "./messageInput.component";
-import { MessageItem } from "./messageItem.component";
+import React, { useState, Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import { MessageInput } from './messageInput.component';
+import { MessageItem } from './messageItem.component';
 
 //TODO
 // handleNewUser
@@ -11,34 +11,35 @@ import { MessageItem } from "./messageItem.component";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: "100%",
+    width: '100%',
     backgroundColor: theme.palette.background.paper,
-    "& .MuiTextField-root": {
+    '& .MuiTextField-root': {
       margin: theme.spacing(1),
       width: 200
     }
   },
   inline: {
-    display: "inline"
+    display: 'inline'
   },
   userJoinedDiv: {
-    textAlign: "center"
+    textAlign: 'center'
   }
 }));
 const inputStyle = {
-  alignSelf: "flex-end",
-  width: "100%",
-  position: "absolute"
+  alignSelf: 'flex-end',
+  width: '100%',
+  position: 'absolute'
 };
 const divStyle = {
-  overflowY: "auto"
+  overflowY: 'auto'
 };
 
 export const Chat = props => {
   const [state, setState] = useState({
-    listValues: []
+    listValues: [],
+    users: []
   });
-  props.socket.on("new_message", data => {
+  props.socket.on('new_message', data => {
     addItem(data.message, data.username);
   });
   const addItem = (message, user) => {
@@ -50,38 +51,56 @@ export const Chat = props => {
           id: state.listValues.length,
           value: message
         }
-      ]
+      ],
+      users: state.users
     });
   };
   const handleNewMessage = (message, user) => {
-    props.socket.emit("new_message", { user: user, message: message });
+    addItem(message, user);
+    props.socket.emit('new_message', {
+      user: user,
+      message: message
+    });
   };
 
   window.onbeforeunload = () => {
-    props.socket.emit("disconnect");
+    props.socket.emit('disconnect');
   };
 
-  props.socket.on("disconnect", data => {
+  props.socket.on('disconnect', data => {
     if (data.username) {
       console.log(`${data.username} disconnected`);
     }
-    console.log("Well god damn someone done disconnected!");
+    console.log('Well god damn someone done disconnected!');
+  });
+
+  props.socket.on('new_user', data => {
+    setState({
+      listValues: state.listValues,
+      users: [
+        ...state.users,
+        {
+          user: data.username === props.user ? 'You' : data.username
+        }
+      ]
+    });
   });
 
   const classes = useStyles();
   return (
     <Fragment>
       <div style={divStyle}>
-        {props.user ? (
-          <div
-            className={classes.userJoinedDiv}
-            hidden={props.user ? false : true}
-          >
-            <strong>
-              <i>{props.user} joined the chat</i>
-            </strong>
-          </div>
-        ) : null}
+        <div className={classes.userJoinedDiv}>
+          <strong>
+            <ul style={{ listStyle: 'none' }}>
+              {state.users.map(item => (
+                <li>
+                  <i>{item.user} joined the chat!</i>
+                </li>
+              ))}
+            </ul>
+          </strong>
+        </div>
         <List className={classes.root}>
           {state.listValues.map(item => (
             <MessageItem

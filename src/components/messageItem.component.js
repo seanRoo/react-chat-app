@@ -1,23 +1,23 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   inline: {
-    display: "inline"
+    display: 'inline'
   },
   listItem: {
-    overflowX: "auto",
-    width: "50%",
-    whiteSpace: "normal",
-    wordWrap: "break-word"
+    overflowX: 'auto',
+    width: '50%',
+    whiteSpace: 'normal',
+    wordWrap: 'break-word'
     // paddingLeft: 60
   },
   secondary: {
-    color: "black"
+    color: 'black'
   }
 }));
 
@@ -34,7 +34,7 @@ export const MessageItem = props => {
           classes={{
             secondary: classes.secondary
           }}
-          primary={props.sender}
+          primary={props.sender === props.user ? 'You' : props.sender}
           secondary={props.message}
         />
       </ListItem>
