@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Chat } from "./chat.component";
-import { UserNameInput } from "./userNameInput.component";
-import Snackbar from "@material-ui/core/Snackbar";
-import MuiAlert from "@material-ui/lab/Alert";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react';
+import { Chat } from './chat.component';
+import { UserNameInput } from './userNameInput.component';
+import Snackbar from '@material-ui/core/Snackbar';
+import MuiAlert from '@material-ui/lab/Alert';
+import { makeStyles } from '@material-ui/core/styles';
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -11,19 +11,19 @@ function Alert(props) {
 
 export const ChatContainer = props => {
   const divStyle = {
-    border: "1px solid black",
-    width: "800px",
-    height: "800px",
-    display: "grid",
-    position: "relative",
-    gridTemplateRows: "10% 80%",
-    borderRadius: "25px"
+    border: '1px solid black',
+    width: '800px',
+    height: '800px',
+    display: 'grid',
+    position: 'relative',
+    gridTemplateRows: '10% 80%',
+    borderRadius: '25px'
   };
 
   const useStyles = makeStyles(theme => ({
     root: {
-      width: "100%",
-      "& > * + *": {
+      width: '100%',
+      '& > * + *': {
         marginTop: theme.spacing(2)
       }
     }
@@ -37,7 +37,7 @@ export const ChatContainer = props => {
   };
 
   const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
+    if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
