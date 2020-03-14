@@ -11,9 +11,10 @@ const useStyles = makeStyles(theme => ({
   },
   listItem: {
     overflowX: "auto",
-    width: "100%",
+    width: "50%",
     whiteSpace: "normal",
     wordWrap: "break-word"
+    // paddingLeft: 60
   },
   secondary: {
     color: "black"
@@ -24,17 +25,19 @@ export const MessageItem = props => {
   const classes = useStyles();
 
   return (
-    <ListItem className={classes.listItem} alignItems="flex-start">
-      <ListItemAvatar>
-        <Avatar alt="Remy Sharp" />
-      </ListItemAvatar>
-      <ListItemText
-        classes={{
-          secondary: classes.secondary
-        }}
-        primary={props.user}
-        secondary={props.message}
-      />
-    </ListItem>
+    <div>
+      <ListItem className={classes.listItem} alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt="Remy Sharp" />
+        </ListItemAvatar>
+        <ListItemText
+          classes={{
+            secondary: classes.secondary
+          }}
+          primary={props.sender}
+          secondary={props.message}
+        />
+      </ListItem>
+    </div>
   );
 };

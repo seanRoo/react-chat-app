@@ -39,21 +39,22 @@ export const Chat = props => {
     listValues: []
   });
   props.socket.on("new_message", data => {
-    addItem(data.message);
+    addItem(data.message, data.username);
   });
-  const addItem = message => {
+  const addItem = (message, user) => {
     setState({
       listValues: [
         ...state.listValues,
         {
+          user: user,
           id: state.listValues.length,
           value: message
         }
       ]
     });
   };
-  const handleNewMessage = message => {
-    props.socket.emit("new_message", { message: message });
+  const handleNewMessage = (message, user) => {
+    props.socket.emit("new_message", { user: user, message: message });
   };
 
   window.onbeforeunload = () => {
@@ -86,6 +87,7 @@ export const Chat = props => {
             <MessageItem
               key={item.id}
               message={item.value}
+              sender={item.user}
               user={props.user}
             ></MessageItem>
           ))}

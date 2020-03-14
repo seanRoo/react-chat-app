@@ -29,7 +29,7 @@ export const MessageInput = props => {
   const handleClick = () => {
     const message = messageValue;
     clearInputField();
-    return props.handleMessage(message);
+    return props.handleMessage(message, props.user);
   };
   const handleChange = e => {
     setMessage(e.target.value);
