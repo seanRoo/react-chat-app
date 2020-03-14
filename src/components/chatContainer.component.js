@@ -34,6 +34,7 @@ export const ChatContainer = props => {
   const handleSignIn = username => {
     setUser(username);
     setOpen(true);
+    props.socket.emit('new_user', { username: username });
   };
 
   const handleClose = (event, reason) => {
