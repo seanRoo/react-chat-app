@@ -44,6 +44,12 @@ export const MessageInput = props => {
       handleClick();
     }
   };
+  const isInputDisabled = () =>{
+    if(messageValue === undefined){
+      return true;
+    }
+    return false;
+  }
   const classes = useStyles();
   return (
     <div className={classes.inputContainer}>
@@ -67,7 +73,7 @@ export const MessageInput = props => {
         color="primary"
         size="small"
         endIcon={<SendIcon />}
-        disabled={props.user ? false : true}
+        disabled={isInputDisabled()}
       ></Button>
     </div>
   );
