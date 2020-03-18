@@ -1,9 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = process.env.PORT||8080;
+const path = require('path');
 
 //middleware
-app.use(express.static('public'));
+app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 server = app.listen(port);
 const io = require('socket.io')(server);
