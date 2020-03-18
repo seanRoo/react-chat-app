@@ -13,11 +13,13 @@ export const ChatContainer = props => {
   const divStyle = {
     border: '1px solid black',
     width: '800px',
-    height: '800px',
+    overflow: 'auto',
     display: 'grid',
     position: 'relative',
     gridTemplateRows: '10% 80%',
-    borderRadius: '25px'
+    borderRadius: '25px',
+    minHeight: 750,
+    marginBottom: 25
   };
 
   const useStyles = makeStyles(theme => ({

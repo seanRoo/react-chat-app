@@ -5,12 +5,11 @@ import { MessageInput } from './messageInput.component';
 import { MessageItem } from './messageItem.component';
 
 //TODO
-// handleNewUser
-// handleDisconnect
 // handleTyping
 
 const useStyles = makeStyles(theme => ({
   root: {
+    maxHeight:600,
     width: '100%',
     backgroundColor: theme.palette.background.paper,
     '& .MuiTextField-root': {
@@ -28,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 const inputStyle = {
   alignSelf: 'flex-end',
   width: '100%',
-  position: 'absolute'
+  maxHeight: 80
 };
 const divStyle = {
   overflowY: 'auto'
@@ -63,16 +62,16 @@ export const Chat = props => {
     });
   };
 
-  window.onbeforeunload = () => {
-    props.socket.emit('disconnect');
-  };
+  // window.onbeforeunload = () => {
+  //   props.socket.emit('disconnect');
+  // };
 
-  props.socket.on('disconnect', data => {
-    if (data.username) {
-      console.log(`${data.username} disconnected`);
-    }
-    console.log('Well god damn someone done disconnected!');
-  });
+  // props.socket.on('disconnect', data => {
+  //   if (data.username) {
+  //     console.log(`${data.username} disconnected`);
+  //   }
+  //   console.log('Well god damn someone done disconnected!');
+  // });
 
   props.socket.on('new_user', data => {
     setState({

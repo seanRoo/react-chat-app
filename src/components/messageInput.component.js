@@ -6,7 +6,8 @@ import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles({
   inputStyle: {
-    width: '80%'
+    width: '80%',
+    maxHeight: 100,
   },
   buttonStyle: {
     width: '5%',
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
   inputContainer: {
     textAlign: 'center',
     paddingBottom: 20,
+    height: 'auto',
     '& .MuiInputBase-root': {
       borderRadius: 25
     }
