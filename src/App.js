@@ -4,7 +4,7 @@ import './App.css';
 import socketIOClient from 'socket.io-client';
 
 const App = () => {
-  const endpoint = 'http://localhost:8080/';
+  const endpoint = process.env.NODE_ENV==='development'?'http://localhost:8080/': null;
   const socket = socketIOClient(endpoint);
 
   const containerStyle = {
