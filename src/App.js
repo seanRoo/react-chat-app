@@ -4,8 +4,8 @@ import './App.css';
 import socketIOClient from 'socket.io-client';
 
 const App = () => {
-  const endpoint = 'http://localhost:4000/';
-  const socket = socketIOClient(endpoint);
+  //const endpoint = 'http://localhost:4000/';
+  const socket = socketIOClient();
 
   const containerStyle = {
     display: 'flex',
