@@ -13,13 +13,19 @@ const useStyles = makeStyles(theme => ({
     "& .MuiInputBase-root": {
       borderRadius: "25px"
     }
+  },
+  onlineUserDiv:{
+    width: 'fit-content',
+    float: 'right',
+    marginRight: 60,
+    marginTop: 50
   }
 }));
 
 export const UserNameInput = props => {
   const [state, setState] = useState({
     nameValue: "",
-    isDisabled: false
+    isDisabled: false,
   });
   const classes = useStyles();
 
@@ -53,6 +59,7 @@ export const UserNameInput = props => {
           disabled={state.isDisabled}
         />
       </FormControl>
+      <div className={classes.onlineUserDiv}>Online Users: {props.clientsCount}</div>
       <Divider />
     </div>
   );
