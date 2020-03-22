@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
 import { MessageItem } from "./messageItem.component";
@@ -41,10 +41,7 @@ export const Chat = props => {
             <ul style={{ listStyle: "none" }}>
               {props.state.users.map(item => (
                 <li>
-                  <i>
-                    {item == props.user ? "You" : item}
-                    joined the chat!
-                  </i>
+                  <i>{item == props.user ? "You" : item} joined the chat!</i>
                 </li>
               ))}
             </ul>
