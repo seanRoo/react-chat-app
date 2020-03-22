@@ -4,7 +4,7 @@ import { UserNameInput } from "./userNameInput.component";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { MessageInput } from "./messageInput.component";
-
+import { isMobileDevice } from "../helperFunctions";
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -12,14 +12,25 @@ function Alert(props) {
 export const ChatContainer = props => {
   const divStyle = {
     border: "1px solid black",
-    width: "800px",
+    width: 800,
     overflow: "auto",
     display: "grid",
     position: "relative",
     gridTemplateRows: "10% 80%",
     borderRadius: "25px",
-    minHeight: 750,
-    marginBottom: 25
+    minHeight: "100%",
+    marginBottom: 25,
+    marginTop: 25
+  };
+  const mobileDivStyle = {
+    border: "1px solid black",
+    width: "100%",
+    overflow: "auto",
+    display: "grid",
+    position: "relative",
+    gridTemplateRows: "10% 80%",
+    borderRadius: "25px",
+    minHeight: "100%"
   };
   const inputStyle = {
     alignSelf: "flex-end",
@@ -83,7 +94,7 @@ export const ChatContainer = props => {
     });
   });
   return (
-    <div style={divStyle}>
+    <div style={isMobileDevice ? mobileDivStyle : divStyle}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="success">
           Signed in as {user}!
