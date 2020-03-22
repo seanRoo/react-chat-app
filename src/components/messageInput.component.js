@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import SendIcon from '@material-ui/icons/Send';
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import SendIcon from "@material-ui/icons/Send";
 
 const useStyles = makeStyles({
   inputStyle: {
-    width: '80%',
-    maxHeight: 100,
+    width: "80%",
+    maxHeight: 100
   },
   buttonStyle: {
-    width: '5%',
+    width: "5%",
     marginLeft: 8,
     marginTop: 12,
     borderRadius: 40
   },
   inputContainer: {
-    textAlign: 'center',
+    textAlign: "center",
     paddingBottom: 20,
-    height: 'auto',
-    '& .MuiInputBase-root': {
+    height: "auto",
+    "& .MuiInputBase-root": {
       borderRadius: 25
     }
   }
@@ -27,7 +27,6 @@ const useStyles = makeStyles({
 
 export const MessageInput = props => {
   const [messageValue, setMessage] = useState();
-  const [isDisabled, setDisable] = useState(true);
   const handleClick = () => {
     const message = messageValue;
     clearInputField();
@@ -37,28 +36,30 @@ export const MessageInput = props => {
     setMessage(e.target.value);
   };
   const clearInputField = () => {
-    setMessage('');
+    setMessage("");
   };
 
   const handleKeyPress = event => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleClick();
     }
   };
-  const isInputDisabled = () =>{
-    if(messageValue === undefined){
+  const isInputDisabled = () => {
+    if (messageValue === undefined || messageValue === "") {
       return true;
     }
     return false;
-  }
+  };
   const classes = useStyles();
   return (
     <div className={classes.inputContainer}>
       <TextField
         className={classes.inputStyle}
         id="outlined-textarea"
-        placeholder="Start typing..."
+        placeholder={
+          props.user ? "Start typing.." : "Sign in to start chatting"
+        }
         multiline
         variant="outlined"
         onChange={handleChange}

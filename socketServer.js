@@ -11,13 +11,17 @@ app.get("/*", function(req, res) {
   res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
+let chatUsers = [];
 const server = app.listen(port);
 const io = require("socket.io")(server);
 io.on("connection", socket => {
   console.log("New user connected");
   socket.on("new_user", data => {
+    chatUsers.push(data.username);
+    console.log(chatUsers);
     io.sockets.emit("new_user", {
-      username: data.username
+      username: data.username,
+      users: chatUsers
     });
   });
 
@@ -28,9 +32,12 @@ io.on("connection", socket => {
     });
   });
 
-  socket.on("disconnect", () => {
-    io.sockets.emit("disconnect", {
-      username: socket.username
+  socket.on("user_disconnected", data => {
+    let disconnectedUser = chatUsers.indexOf(data.username);
+    chatUsers.splice(disconnectedUser, 1);
+    socket.broadcast.emit("user_disconnected", {
+      disconnectedUser: data.username,
+      users: chatUsers
     });
   });
 
@@ -40,15 +47,4 @@ io.on("connection", socket => {
       message: data.message
     });
   });
-
-  socket.on("tester", data => {
-    console.log(data.message);
-  });
 });
-//routes
-app.get("/doof", (req, res) => {
-  console.log("howya");
-  //res.send({ express: "YOUR EXPRESS BACKEND IS CONNECTED TO REACT" });
-});
-
-// server = app.listen(3000);
