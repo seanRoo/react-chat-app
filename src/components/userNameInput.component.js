@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
   onlineUserDivMobile: {
     width: "fit-content",
     float: "right",
-    marginRight: 30,
-    marginTop: 30,
+    marginRight: "5%",
+    marginTop: "9%",
     display: "flex"
   },
   onlineUserDivDesktop: {
