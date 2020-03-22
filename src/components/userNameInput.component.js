@@ -4,9 +4,10 @@ import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import LensIcon from "@material-ui/icons/Lens";
+import { isMobileDevice } from "../helperFunctions";
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  desktop: {
     "& > *": {
       margin: theme.spacing(1),
       width: 200
@@ -15,7 +16,23 @@ const useStyles = makeStyles(theme => ({
       borderRadius: "25px"
     }
   },
-  onlineUserDiv: {
+  mobile: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "65%"
+    },
+    "& .MuiInputBase-root": {
+      borderRadius: "25px"
+    }
+  },
+  onlineUserDivMobile: {
+    width: "fit-content",
+    float: "right",
+    marginRight: 30,
+    marginTop: 30,
+    display: "flex"
+  },
+  onlineUserDivDesktop: {
     width: "fit-content",
     float: "right",
     marginRight: 60,
@@ -54,7 +71,9 @@ export const UserNameInput = props => {
   };
   return (
     <div>
-      <FormControl className={classes.root}>
+      <FormControl
+        className={isMobileDevice ? classes.mobile : classes.desktop}
+      >
         <TextField
           id="outlined-basic"
           label={state.isDisabled ? "" : "Sign in"}
@@ -65,7 +84,13 @@ export const UserNameInput = props => {
           disabled={state.isDisabled}
         />
       </FormControl>
-      <div className={classes.onlineUserDiv}>
+      <div
+        className={
+          isMobileDevice
+            ? classes.onlineUserDivMobile
+            : classes.onlineUserDivDesktop
+        }
+      >
         <LensIcon className={classes.icon} fontSize={"small"} />
         <span>Online Users: {props.clientCount}</span>
       </div>

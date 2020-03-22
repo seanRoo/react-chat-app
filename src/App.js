@@ -11,7 +11,7 @@ const App = () => {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 20
+    height: "100%"
   };
 
   return (
