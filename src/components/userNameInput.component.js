@@ -92,7 +92,7 @@ export const UserNameInput = props => {
         }
       >
         <LensIcon className={classes.icon} fontSize={"small"} />
-        <span>Online Users: {props.clientCount}</span>
+        Online Users: {props.clientCount}
       </div>
       <Divider />
     </div>

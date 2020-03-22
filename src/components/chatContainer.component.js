@@ -18,7 +18,7 @@ export const ChatContainer = props => {
     position: "relative",
     gridTemplateRows: "10% 80%",
     borderRadius: "25px",
-    minHeight: 750,
+    minHeight: "100%",
     marginBottom: 25,
     marginTop: 25
   };
@@ -30,7 +30,7 @@ export const ChatContainer = props => {
     position: "relative",
     gridTemplateRows: "10% 80%",
     borderRadius: "25px",
-    height: "100%"
+    minHeight: "100%"
   };
   const inputStyle = {
     alignSelf: "flex-end",
