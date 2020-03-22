@@ -3,6 +3,7 @@ import { Chat } from "./chat.component";
 import { UserNameInput } from "./userNameInput.component";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { MessageInput } from "./messageInput.component";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -20,9 +21,18 @@ export const ChatContainer = props => {
     minHeight: 750,
     marginBottom: 25
   };
+  const inputStyle = {
+    alignSelf: "flex-end",
+    width: "100%",
+    maxHeight: 80
+  };
 
   const [user, setUser] = useState();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
+  const [state, setState] = useState({
+    listValues: [],
+    users: []
+  });
   const handleSignIn = username => {
     setUser(username);
     setOpen(true);
@@ -36,6 +46,42 @@ export const ChatContainer = props => {
     setOpen(false);
   };
 
+  const handleNewMessage = (message, user) => {
+    addItem(message, user);
+    props.socket.emit("new_message", {
+      user: user,
+      message: message
+    });
+  };
+
+  const addItem = (message, user) => {
+    setState({
+      listValues: [
+        ...state.listValues,
+        {
+          user: user,
+          id: state.listValues.length,
+          value: message
+        }
+      ],
+      users: state.users
+    });
+  };
+  props.socket.on("new_message", data => {
+    addItem(data.message, data.username);
+  });
+  props.socket.on("new_user", data => {
+    setState({
+      listValues: state.listValues,
+      users: [...data.users]
+    });
+  });
+  props.socket.on("user_disconnected", data => {
+    setState({
+      listValues: state.listValues,
+      users: [...data.users]
+    });
+  });
   return (
     <div style={divStyle}>
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -43,8 +89,18 @@ export const ChatContainer = props => {
           Signed in as {user}!
         </Alert>
       </Snackbar>
-      <UserNameInput handleSignIn={handleSignIn} {...props} />
-      <Chat {...props} user={user} />
+      <UserNameInput
+        handleSignIn={handleSignIn}
+        clientCount={state.users.length}
+        {...props}
+      />
+      <Chat {...props} user={user} state={state} />
+      <div style={inputStyle}>
+        <MessageInput
+          handleMessage={handleNewMessage}
+          user={user}
+        ></MessageInput>
+      </div>
     </div>
   );
 };

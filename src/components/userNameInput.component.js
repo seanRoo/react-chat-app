@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
+import LensIcon from "@material-ui/icons/Lens";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,18 +15,23 @@ const useStyles = makeStyles(theme => ({
       borderRadius: "25px"
     }
   },
-  onlineUserDiv:{
-    width: 'fit-content',
-    float: 'right',
+  onlineUserDiv: {
+    width: "fit-content",
+    float: "right",
     marginRight: 60,
-    marginTop: 50
+    marginTop: 40,
+    display: "flex"
+  },
+  icon: {
+    color: "limegreen",
+    paddingRight: 5
   }
 }));
 
 export const UserNameInput = props => {
   const [state, setState] = useState({
     nameValue: "",
-    isDisabled: false,
+    isDisabled: false
   });
   const classes = useStyles();
 
@@ -59,7 +65,10 @@ export const UserNameInput = props => {
           disabled={state.isDisabled}
         />
       </FormControl>
-      <div className={classes.onlineUserDiv}>Online Users: {props.clientsCount}</div>
+      <div className={classes.onlineUserDiv}>
+        <LensIcon className={classes.icon} fontSize={"small"} />
+        <span>Online Users: {props.clientCount}</span>
+      </div>
       <Divider />
     </div>
   );
