@@ -5,9 +5,11 @@ import socketIOClient from "socket.io-client";
 
 const App = () => {
   console.log(process.env);
-  //const endpoint = "http://localhost:8080/";
-  // process.env.NODE_ENV === "development" ? "http://localhost:8080/" : "/";
-  const socket = socketIOClient();
+  const endpoint = "http://localhost:8080/";
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:8080/"
+    : "https://seans-react-chat-application.herokuapp.com/";
+  const socket = socketIOClient(endpoint);
   console.log(socket);
   const containerStyle = {
     display: "flex",
