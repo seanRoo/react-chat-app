@@ -26,7 +26,7 @@ export const Chat = (props) => {
               {props.state.users.map((item) => (
                 <li key={`newUser-${item}`}>
                   <i>
-                    {item == props.user ? "You " : item}
+                    {item === props.user ? "You " : item}
                     joined the chat!
                   </i>
                 </li>
