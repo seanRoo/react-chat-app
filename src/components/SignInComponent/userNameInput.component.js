@@ -1,49 +1,10 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import LensIcon from "@material-ui/icons/Lens";
 import { isMobileDevice } from "../../helperFunctions";
-
-const useStyles = makeStyles((theme) => ({
-  desktop: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-    "& .MuiInputBase-root": {
-      borderRadius: "25px",
-    },
-  },
-  mobile: {
-    "& > *": {
-      margin: theme.spacing(1),
-      width: "65%",
-    },
-    "& .MuiInputBase-root": {
-      borderRadius: "25px",
-    },
-  },
-  onlineUserDivMobile: {
-    width: "fit-content",
-    float: "right",
-    marginRight: "5%",
-    marginTop: "9%",
-    display: "flex",
-  },
-  onlineUserDivDesktop: {
-    width: "fit-content",
-    float: "right",
-    marginRight: 60,
-    marginTop: 40,
-    display: "flex",
-  },
-  icon: {
-    color: "limegreen",
-    paddingRight: 5,
-  },
-}));
+import useStyles from "./userNameInput.styles";
 
 export const UserNameInput = (props) => {
   const [state, setState] = useState({
