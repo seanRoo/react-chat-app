@@ -1,33 +1,17 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useRef, useEffect } from "react";
 import List from "@material-ui/core/List";
-import { MessageItem } from "./messageItem.component";
+import { MessageItem } from "../SendMessageComponent/messageItem.component";
+import useStyles from "./chatComponent.styles";
 
 //TODO
 // handleTyping
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    maxHeight: 600,
-    width: "100%",
-    backgroundColor: theme.palette.background.paper,
-    "& .MuiTextField-root": {
-      margin: theme.spacing(1),
-      width: 200
-    }
-  },
-  inline: {
-    display: "inline"
-  },
-  userJoinedDiv: {
-    textAlign: "center"
-  }
-}));
-const divStyle = {
-  overflowY: "auto"
-};
-
-export const Chat = props => {
+export const Chat = (props) => {
+  const messagesEndRef = useRef(null);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+  useEffect(scrollToBottom, [props.state.listValues]);
   window.onbeforeunload = () => {
     props.socket.emit("user_disconnected", { username: props.user });
   };
@@ -35,14 +19,14 @@ export const Chat = props => {
   const classes = useStyles();
   return (
     <>
-      <div style={divStyle}>
+      <div className={classes.containerDivStyle}>
         <div className={classes.userJoinedDiv}>
           <strong>
             <ul style={{ listStyle: "none" }}>
-              {props.state.users.map(item => (
-                <li>
+              {props.state.users.map((item) => (
+                <li key={`newUser-${item}`}>
                   <i>
-                    {item == props.user ? "You" : item}
+                    {item == props.user ? "You " : item}
                     joined the chat!
                   </i>
                 </li>
@@ -51,7 +35,7 @@ export const Chat = props => {
           </strong>
         </div>
         <List className={classes.root}>
-          {props.state.listValues.map(item => (
+          {props.state.listValues.map((item) => (
             <MessageItem
               key={item.id}
               message={item.value}
@@ -59,6 +43,7 @@ export const Chat = props => {
               user={props.user}
             ></MessageItem>
           ))}
+          <div ref={messagesEndRef} />
         </List>
       </div>
     </>

@@ -1,17 +1,17 @@
 import React from "react";
-import { ChatContainer } from "./components/chatContainer.component";
+import { ChatContainer } from "./components/ChatComponent/chatContainer.component";
 import "./App.css";
 import socketIOClient from "socket.io-client";
 
 const App = () => {
-  const endpoint =
-    process.env.NODE_ENV === "development" ? "http://localhost:8080/" : "/";
+  const endpoint = "http://localhost:8080/";
+  // process.env.NODE_ENV === "development" ? "http://localhost:8080/" : "/";
   const socket = socketIOClient(endpoint);
   const containerStyle = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    paddingTop: 20
+    height: "100%",
   };
 
   return (

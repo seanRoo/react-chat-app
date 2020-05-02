@@ -1,45 +1,24 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import SendIcon from "@material-ui/icons/Send";
+import useStyles from "./messageInput.styles";
 
-const useStyles = makeStyles({
-  inputStyle: {
-    width: "80%",
-    maxHeight: 100
-  },
-  buttonStyle: {
-    width: "5%",
-    marginLeft: 8,
-    marginTop: 12,
-    borderRadius: 40
-  },
-  inputContainer: {
-    textAlign: "center",
-    paddingBottom: 20,
-    height: "auto",
-    "& .MuiInputBase-root": {
-      borderRadius: 25
-    }
-  }
-});
-
-export const MessageInput = props => {
+export const MessageInput = (props) => {
   const [messageValue, setMessage] = useState();
   const handleClick = () => {
     const message = messageValue;
     clearInputField();
     return props.handleMessage(message, props.user);
   };
-  const handleChange = e => {
+  const handleChange = (e) => {
     setMessage(e.target.value);
   };
   const clearInputField = () => {
     setMessage("");
   };
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleClick();

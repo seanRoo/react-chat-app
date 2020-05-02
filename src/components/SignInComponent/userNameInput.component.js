@@ -4,69 +4,69 @@ import FormControl from "@material-ui/core/FormControl";
 import Divider from "@material-ui/core/Divider";
 import TextField from "@material-ui/core/TextField";
 import LensIcon from "@material-ui/icons/Lens";
-import { isMobileDevice } from "../helperFunctions";
+import { isMobileDevice } from "../../helperFunctions";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   desktop: {
     "& > *": {
       margin: theme.spacing(1),
-      width: 200
+      width: 200,
     },
     "& .MuiInputBase-root": {
-      borderRadius: "25px"
-    }
+      borderRadius: "25px",
+    },
   },
   mobile: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "65%"
+      width: "65%",
     },
     "& .MuiInputBase-root": {
-      borderRadius: "25px"
-    }
+      borderRadius: "25px",
+    },
   },
   onlineUserDivMobile: {
     width: "fit-content",
     float: "right",
     marginRight: "5%",
     marginTop: "9%",
-    display: "flex"
+    display: "flex",
   },
   onlineUserDivDesktop: {
     width: "fit-content",
     float: "right",
     marginRight: 60,
     marginTop: 40,
-    display: "flex"
+    display: "flex",
   },
   icon: {
     color: "limegreen",
-    paddingRight: 5
-  }
+    paddingRight: 5,
+  },
 }));
 
-export const UserNameInput = props => {
+export const UserNameInput = (props) => {
   const [state, setState] = useState({
     nameValue: "",
-    isDisabled: false
+    isDisabled: false,
   });
   const classes = useStyles();
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       const username = state.nameValue;
       setState({
         ...state,
-        isDisabled: true
+        isDisabled: true,
       });
       return props.handleSignIn(username);
     }
   };
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     setState({
       ...state,
-      nameValue: event.target.value
+      nameValue: event.target.value,
     });
   };
   return (
