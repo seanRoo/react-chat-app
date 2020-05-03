@@ -51,16 +51,6 @@ export const MessageInput = (props) => {
         />
       </div>
       <div className={classes.sendButtonDiv}>
-        {/* <Button
-          type="button"
-          onClick={handleClick}
-          className={classes.buttonStyle}
-          variant="contained"
-          color="primary"
-          size="small"
-          endIcon={<SendIcon />}
-          disabled={isInputDisabled()}
-        ></Button> */}
         <IconButton
           type="button"
           onClick={handleClick}

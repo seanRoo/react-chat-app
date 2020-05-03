@@ -32,9 +32,7 @@ export const UserNameInput = (props) => {
   };
   return (
     <div>
-      <FormControl
-        className={isMobileDevice ? classes.mobile : classes.desktop}
-      >
+      <FormControl className={classes.desktop}>
         <TextField
           id="outlined-basic"
           label={state.isDisabled ? "" : "Sign in"}
@@ -48,9 +46,9 @@ export const UserNameInput = (props) => {
       </FormControl>
       <div
         className={
-          isMobileDevice
-            ? classes.onlineUserDivMobile
-            : classes.onlineUserDivDesktop
+          // isMobileDevice
+          //   ? classes.onlineUserDivMobile
+          classes.onlineUserDivDesktop
         }
       >
         <div className={classes.onlineUserTextContainer}>

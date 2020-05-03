@@ -11,22 +11,22 @@ export default makeStyles(
         borderRadius: "25px",
       },
     },
-    mobile: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: "65%",
-      },
-      "& .MuiInputBase-root": {
-        borderRadius: "25px",
-      },
-    },
-    onlineUserDivMobile: {
-      width: "fit-content",
-      float: "right",
-      marginRight: "5%",
-      marginTop: "9%",
-      display: "flex",
-    },
+    // mobile: {
+    //   "& > *": {
+    //     margin: theme.spacing(1),
+    //     width: "65%",
+    //   },
+    //   "& .MuiInputBase-root": {
+    //     borderRadius: "25px",
+    //   },
+    // },
+    // onlineUserDivMobile: {
+    //   width: "fit-content",
+    //   float: "right",
+    //   marginRight: "5%",
+    //   marginTop: "9%",
+    //   display: "flex",
+    // },
     onlineUserDivDesktop: {
       textAlign: "center",
       width: "48%",
