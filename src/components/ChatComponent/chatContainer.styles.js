@@ -10,7 +10,7 @@ export default makeStyles(
       gridTemplateRows: "10% 80%",
       borderRadius: "25px",
       height: "90%",
-      marginBottom: 25,
+      paddingBottom: 30,
     },
     mobileDivStyle: {
       border: "1px solid black",

@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(
   (theme) => ({
     desktop: {
-      "& > *": {
-        margin: theme.spacing(1),
-        width: 200,
-      },
+      width: "48%",
+      paddingLeft: "10px",
+      paddingTop: "10px",
+      paddingBottom: "10px",
       "& .MuiInputBase-root": {
         borderRadius: "25px",
       },
@@ -28,15 +28,16 @@ export default makeStyles(
       display: "flex",
     },
     onlineUserDivDesktop: {
-      width: "fit-content",
+      textAlign: "center",
+      width: "48%",
       float: "right",
-      marginRight: 60,
-      marginTop: 40,
-      display: "flex",
     },
     icon: {
       color: "limegreen",
       paddingRight: 5,
+    },
+    onlineUserTextContainer: {
+      marginTop: "25px",
     },
   }),
   { name: "UserNameInput" }

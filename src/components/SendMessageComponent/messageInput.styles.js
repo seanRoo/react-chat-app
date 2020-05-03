@@ -3,22 +3,27 @@ import { makeStyles } from "@material-ui/core/styles";
 export default makeStyles(
   () => ({
     inputStyle: {
-      width: "80%",
-      maxHeight: 100,
+      width: "100%",
+      //   maxHeight: 100,
     },
     buttonStyle: {
-      width: "5%",
-      marginLeft: 8,
-      marginTop: 12,
-      borderRadius: 40,
+      marginTop: "25px",
     },
-    inputContainer: {
+    sendMessageContainer: {
       textAlign: "center",
-      paddingBottom: 20,
       height: "auto",
       "& .MuiInputBase-root": {
         borderRadius: 25,
       },
+    },
+    inputDiv: {
+      width: "85%",
+      display: "inline-block",
+      marginRight: "10px",
+    },
+    sendButtonDiv: {
+      width: "10%",
+      display: "inline-block",
     },
   }),
   { name: "MessageInput" }

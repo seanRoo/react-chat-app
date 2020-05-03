@@ -43,6 +43,7 @@ export const UserNameInput = (props) => {
           onKeyPress={handleKeyPress}
           onChange={handleChange}
           disabled={state.isDisabled}
+          InputLabelProps={{ className: classes.inputLabel }}
         />
       </FormControl>
       <div
@@ -52,8 +53,10 @@ export const UserNameInput = (props) => {
             : classes.onlineUserDivDesktop
         }
       >
-        <LensIcon className={classes.icon} fontSize={"small"} />
-        Online Users: {props.clientCount}
+        <div className={classes.onlineUserTextContainer}>
+          <LensIcon className={classes.icon} fontSize={"small"} />
+          Online Users: {props.clientCount}
+        </div>
       </div>
       <Divider />
     </div>

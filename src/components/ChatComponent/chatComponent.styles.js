@@ -18,7 +18,7 @@ export default makeStyles(
     },
     containerDivStyle: {
       overflowY: "scroll",
-      marginBottom: 10,
+      paddingBottom: 30,
     },
   }),
   { name: "ChatComponent" }

@@ -9,7 +9,9 @@ import useStyles from "./chatComponent.styles";
 export const Chat = (props) => {
   const messagesEndRef = useRef(null);
   const scrollToBottom = () => {
-    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current.scrollIntoView({
+      behavior: "smooth",
+    });
   };
   useEffect(scrollToBottom, [props.state.listValues]);
   window.onbeforeunload = () => {
@@ -26,7 +28,7 @@ export const Chat = (props) => {
               {props.state.users.map((item) => (
                 <li key={`newUser-${item}`}>
                   <i>
-                    {item === props.user ? "You " : item}
+                    {item === props.user ? "You " : `${item} `}
                     joined the chat!
                   </i>
                 </li>
